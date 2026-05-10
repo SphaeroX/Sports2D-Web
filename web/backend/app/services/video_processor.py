@@ -45,29 +45,22 @@ def create_preview(video_path: Path, output_path: Path, max_height: int = 480) -
     return output_path
 
 def trim_video(video_path: Path, output_path: Path, start: float, end: float) -> Path:
-    """Trim video to specific time range using FFmpeg (accurate seek)."""
+    """Trim video to specific time range using FFmpeg (accurate re-encode)."""
     duration = end - start
+    # Re-encode for frame-accurate trimming (copy mode can only cut at keyframes)
     cmd = [
-        "ffmpeg", "-y", "-ss", str(start), "-t", str(duration),
-        "-i", str(video_path),
-        "-c", "copy",
+        "ffmpeg", "-y", "-i", str(video_path),
+        "-ss", str(start), "-t", str(duration),
+        "-c:v", "libx264", "-preset", "fast", "-crf", "23",
+        "-c:a", "aac", "-b:a", "128k",
         "-avoid_negative_ts", "make_zero",
+        "-movflags", "+faststart",
         str(output_path)
     ]
     result = subprocess.run(cmd, capture_output=True, text=True)
     if result.returncode != 0:
-        # Fallback to re-encode if copy fails
-        cmd = [
-            "ffmpeg", "-y", "-ss", str(start), "-t", str(duration),
-            "-i", str(video_path),
-            "-c:v", "libx264", "-preset", "fast", "-crf", "23",
-            "-c:a", "aac", "-b:a", "128k",
-            str(output_path)
-        ]
-        result = subprocess.run(cmd, capture_output=True, text=True)
-        if result.returncode != 0:
-            logger.error(f"FFmpeg trim error: {result.stderr}")
-            raise RuntimeError("Failed to trim video")
+        logger.error(f"FFmpeg trim error: {result.stderr}")
+        raise RuntimeError("Failed to trim video")
     return output_path
 
 def create_segments(video_path: Path, output_dir: Path, segments: List[Tuple[float, float]]) -> List[Path]:
