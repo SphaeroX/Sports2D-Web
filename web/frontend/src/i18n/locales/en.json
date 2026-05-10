@@ -58,7 +58,8 @@
     },
     "queue": {
       "title": "Your Analysis Queue",
-      "viewDetails": "View Details"
+      "viewDetails": "View Details",
+      "delete": "Delete"
     }
   },
   "job": {
@@ -71,6 +72,7 @@
     "waitMessage": "Please keep this page open. You can also bookmark the link above and come back later.",
     "download": "Download Results (ZIP)",
     "downloadHint": "Your files will be deleted immediately after download for privacy.",
+    "delete": "Delete",
     "states": {
       "pending": "Pending",
       "preprocessing": "Pre-processing",

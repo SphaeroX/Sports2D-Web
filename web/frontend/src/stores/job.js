@@ -10,7 +10,7 @@ function getUserId() {
   return localStorage.getItem(USER_ID_KEY)
 }
 
-function loadJobHistory() {
+export function loadJobHistory() {
   try {
     return JSON.parse(localStorage.getItem(JOBS_HISTORY_KEY) || '[]')
   } catch {
@@ -18,7 +18,7 @@ function loadJobHistory() {
   }
 }
 
-function saveJobHistory(jobs) {
+export function saveJobHistory(jobs) {
   localStorage.setItem(JOBS_HISTORY_KEY, JSON.stringify(jobs))
 }
 
@@ -103,6 +103,17 @@ export const useJobStore = defineStore('job', {
       this.resultSizeMb = d.result_size_mb
       return d
     },
+    async deleteJob(jobId) {
+      try {
+        await axios.delete(`${API_BASE}/api/jobs/${jobId}`)
+        const history = loadJobHistory().filter(j => j.job_id !== jobId)
+        saveJobHistory(history)
+        this.jobHistory = history
+      } catch (err) {
+        console.error('Failed to delete job', err)
+        throw err
+      }
+    },
     async fetchJobHistory() {
       const userId = getUserId()
       if (!userId) return
@@ -114,7 +125,7 @@ export const useJobStore = defineStore('job', {
         const merged = jobs.map(job => {
           const local = localHistory.find(j => j.job_id === job.job_id)
           return { ...local, ...job }
-        })
+        }).filter(j => !j.status?.toLowerCase().includes('deleted'))
         saveJobHistory(merged)
         this.jobHistory = merged
       } catch (err) {

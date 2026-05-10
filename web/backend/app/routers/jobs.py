@@ -67,12 +67,32 @@ async def get_job_status(job_id: str, db: Session = Depends(get_db)):
         result_size_mb=job.result_size_mb,
     )
 
+@router.delete("/{job_id}")
+async def delete_job(job_id: str, db: Session = Depends(get_db)):
+    job = db.query(JobRecord).filter(JobRecord.job_id == job_id).first()
+    if not job:
+        raise HTTPException(404, detail="Job not found")
+    
+    # Delete files immediately
+    storage_service.delete_job_files(job_id)
+    
+    # Mark as deleted in DB
+    job.deleted = "true"
+    job.status = JobStatus.FAILED.value
+    job.message = "Deleted by user"
+    db.commit()
+    
+    return {"job_id": job_id, "message": "Job deleted"}
+
 @router.get("/list", response_model=JobListResponse)
 async def list_jobs(user_id: str, db: Session = Depends(get_db)):
     if not user_id:
         raise HTTPException(400, detail="user_id is required")
     
-    jobs = db.query(JobRecord).filter(JobRecord.user_id == user_id).order_by(JobRecord.created_at.desc()).all()
+    jobs = db.query(JobRecord).filter(
+        JobRecord.user_id == user_id,
+        JobRecord.deleted == "false"
+    ).order_by(JobRecord.created_at.desc()).all()
     
     items = []
     for job in jobs:

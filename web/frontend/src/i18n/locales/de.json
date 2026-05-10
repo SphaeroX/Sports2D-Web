@@ -58,7 +58,8 @@
     },
     "queue": {
       "title": "Ihre Analyse-Warteschlange",
-      "viewDetails": "Details anzeigen"
+      "viewDetails": "Details anzeigen",
+      "delete": "Löschen"
     }
   },
   "job": {
@@ -71,6 +72,7 @@
     "waitMessage": "Bitte lassen Sie diese Seite geöffnet. Sie können auch den obigen Link bookmarken und später wiederkommen.",
     "download": "Ergebnisse herunterladen (ZIP)",
     "downloadHint": "Ihre Dateien werden aus Datenschutzgründen sofort nach dem Download gelöscht.",
+    "delete": "Löschen",
     "states": {
       "pending": "Ausstehend",
       "preprocessing": "Vorverarbeitung",

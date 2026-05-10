@@ -32,19 +32,35 @@
       <div v-if="jobStore.status === 'failed'" class="error-box">
         <p>{{ jobStore.message || $t('errors.generic') }}</p>
       </div>
+
+      <div class="actions-row">
+        <button class="btn-small danger" @click="deleteAndGoHome">{{ $t('job.delete') }}</button>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { useJobStore } from '../stores/job.js'
 
 const props = defineProps({ jobId: String })
 const jobStore = useJobStore()
+const router = useRouter()
 
 const copied = ref(false)
 const currentUrl = typeof window !== 'undefined' ? window.location.href : ''
+
+async function deleteAndGoHome() {
+  if (!confirm('Delete this job?')) return
+  try {
+    await jobStore.deleteJob(props.jobId)
+    router.push({ name: 'home' })
+  } catch (err) {
+    alert('Failed to delete job')
+  }
+}
 
 const statusLabel = computed(() => {
   const map = {
@@ -131,4 +147,6 @@ onUnmounted(() => {
   padding: 0.8rem 2rem; border-radius: 8px; font-weight: 600; font-size: 1rem;
 }
 .error-box { color: #f87171; background: rgba(239,68,68,0.1); padding: 1rem; border-radius: 8px; }
+.actions-row { display: flex; justify-content: flex-end; }
+.btn-small.danger { background: #ef4444; color: #fff; }
 </style>

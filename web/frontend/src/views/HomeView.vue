@@ -72,9 +72,13 @@
               :href="job.download_url"
               class="btn-small btn-green"
               download
+              @click="onDownload(job.job_id)"
             >
               {{ $t('job.download') }}
             </a>
+            <button class="btn-small danger" @click="deleteJob(job.job_id)">
+              {{ $t('home.queue.delete') }}
+            </button>
           </div>
         </div>
       </div>
@@ -85,7 +89,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { useJobStore } from '../stores/job.js'
+import { useJobStore, loadJobHistory, saveJobHistory } from '../stores/job.js'
 import VideoEditor from '../components/VideoEditor.vue'
 import ParameterForm from '../components/ParameterForm.vue'
 
@@ -146,6 +150,24 @@ async function startAnalysis() {
   } finally {
     processing.value = false
   }
+}
+
+async function deleteJob(jobId) {
+  if (!confirm('Delete this job?')) return
+  try {
+    await jobStore.deleteJob(jobId)
+  } catch (err) {
+    alert('Failed to delete job')
+  }
+}
+
+function onDownload(jobId) {
+  // Remove from local history after download starts
+  setTimeout(() => {
+    const history = loadJobHistory().filter(j => j.job_id !== jobId)
+    saveJobHistory(history)
+    jobStore.jobHistory = history
+  }, 500)
 }
 
 function isJobActive(status) {
@@ -241,4 +263,6 @@ onUnmounted(() => {
 .btn-small:hover { background: #475569; }
 .btn-green { background: #22c55e; color: #fff; }
 .btn-green:hover { background: #16a34a; }
+.btn-small.danger { background: #ef4444; color: #fff; }
+.btn-small.danger:hover { background: #dc2626; }
 </style>
