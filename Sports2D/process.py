@@ -1068,7 +1068,7 @@ def select_persons_on_vid(video_file_path, frame_range, all_pose_coords):
 
 
     # Open video
-    cap = cv2.VideoCapture(video_file_path)
+    cap = cv2.VideoCapture(str(video_file_path))
     if not cap.isOpened():
         raise ValueError(f"Could not open video: {video_file_path}")
     start_frame, end_frame = frame_range
@@ -2556,7 +2556,7 @@ def process_fun(config_dict, video_file, time_range, frame_rate, output_dir):
         first_frame, last_frame = frame_range
         if 'first_trim' not in locals():
             first_trim, last_trim = all_frames_time.index.start, all_frames_time.index.stop-1
-        cap = cv2.VideoCapture(video_file_path)
+        cap = cv2.VideoCapture(str(video_file_path))
         cap.set(cv2.CAP_PROP_POS_FRAMES, first_frame+first_trim)
         for i in range(first_trim, last_trim):
             success, frame = cap.read()

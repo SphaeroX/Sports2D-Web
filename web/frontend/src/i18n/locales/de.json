@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "home": "Start",
+    "credits": "Credits",
+    "language": "Sprache"
+  },
+  "home": {
+    "title": "Sports2D Web-Analyse",
+    "subtitle": "Markerlose 2D-Pose- und Winkelschätzung aus Videos.",
+    "upload": {
+      "title": "1. Video hochladen",
+      "dragText": "Video hierher ziehen oder klicken zum Durchsuchen",
+      "maxSize": "Max {size}MB, max {duration}s Dauer"
+    },
+    "editor": {
+      "title": "2. Trimmen & Segmentieren",
+      "trimStart": "Start trimmen",
+      "trimEnd": "Ende trimmen",
+      "addSegment": "Segment hinzufügen",
+      "removeSegment": "Entfernen",
+      "segmentLabel": "Segment {index}",
+      "play": "Abspielen",
+      "pause": "Pause",
+      "reset": "Zurücksetzen",
+      "hint": "Start- und Endzeit festlegen, um das Video zu trimmen. Mehrere Segmente hinzufügen, um sie separat zu analysieren."
+    },
+    "parameters": {
+      "title": "3. Analyseparameter",
+      "mode": {
+        "label": "Modus",
+        "standard": "Standard",
+        "expert": "Experte"
+      },
+      "personHeight": "Referenzgröße Person (m)",
+      "personsToDetect": "Zu erkennende Personen",
+      "all": "Alle",
+      "poseModel": "Pose-Modell",
+      "detFrequency": "Erkennungsfrequenz",
+      "device": "Gerät",
+      "trackingMode": "Tracking-Modus",
+      "doIK": "Inverse Kinematik",
+      "filterType": "Filtertyp",
+      "cutoffFreq": "Grenzfrequenz (Hz)",
+      "jointAngles": "Gelenkwinkel",
+      "segmentAngles": "Segmentwinkel",
+      "tooltip": {
+        "personHeight": "Körpergröße der Referenzperson für Pixel-zu-Meter-Umrechnung.",
+        "detFrequency": "Personenerkennung nur alle N Frames ausführen. Höher = schneller, weniger genau.",
+        "doIK": "OpenSim-Inverse-Kinematik durchführen (forschungsnah, langsamer).",
+        "filterType": "Filtermethode zum Glätten der Trajektorien.",
+        "cutoffFreq": "Grenzfrequenz des Tiefpassfilters in Hertz."
+      }
+    },
+    "actions": {
+      "startAnalysis": "Analyse starten",
+      "processing": "Verarbeitung...",
+      "queued": "In Warteschlange"
+    }
+  },
+  "job": {
+    "title": "Auftragsstatus",
+    "status": "Status",
+    "progress": "Fortschritt",
+    "yourLink": "Ihr eindeutiger Ergebnis-Link",
+    "copyLink": "Link kopieren",
+    "copied": "Kopiert!",
+    "waitMessage": "Bitte lassen Sie diese Seite geöffnet. Sie können auch den obigen Link bookmarken und später wiederkommen.",
+    "download": "Ergebnisse herunterladen (ZIP)",
+    "downloadHint": "Ihre Dateien werden aus Datenschutzgründen sofort nach dem Download gelöscht.",
+    "states": {
+      "pending": "Ausstehend",
+      "preprocessing": "Vorverarbeitung",
+      "queued": "In Warteschlange",
+      "processing": "Verarbeitung",
+      "completed": "Abgeschlossen",
+      "failed": "Fehlgeschlagen"
+    }
+  },
+  "credits": {
+    "title": "Credits",
+    "text": "Sports2D-Web basiert auf der großartigen Open-Source-Arbeit von David Pagnon und dem Pose2Sim-Projekt.",
+    "originalProject": "Original Sports2D Projekt",
+    "pose2sim": "Pose2Sim Projekt",
+    "license": "Lizenziert unter BSD-3-Clause."
+  },
+  "errors": {
+    "uploadFailed": "Upload fehlgeschlagen. Bitte versuchen Sie es erneut.",
+    "processFailed": "Verarbeitung konnte nicht gestartet werden.",
+    "generic": "Etwas ist schiefgelaufen."
+  }
+}

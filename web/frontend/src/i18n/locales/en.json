@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "home": "Home",
+    "credits": "Credits",
+    "language": "Language"
+  },
+  "home": {
+    "title": "Sports2D Web Analysis",
+    "subtitle": "Markerless 2D pose and angle estimation from video.",
+    "upload": {
+      "title": "1. Upload Video",
+      "dragText": "Drag & drop your video here, or click to browse",
+      "maxSize": "Max {size}MB, max {duration}s duration"
+    },
+    "editor": {
+      "title": "2. Trim & Segment",
+      "trimStart": "Trim start",
+      "trimEnd": "Trim end",
+      "addSegment": "Add segment",
+      "removeSegment": "Remove",
+      "segmentLabel": "Segment {index}",
+      "play": "Play",
+      "pause": "Pause",
+      "reset": "Reset",
+      "hint": "Set start and end times to trim the video. Add multiple segments to analyze them separately."
+    },
+    "parameters": {
+      "title": "3. Analysis Parameters",
+      "mode": {
+        "label": "Mode",
+        "standard": "Standard",
+        "expert": "Expert"
+      },
+      "personHeight": "Reference person height (m)",
+      "personsToDetect": "Persons to detect",
+      "all": "All",
+      "poseModel": "Pose model",
+      "detFrequency": "Detection frequency",
+      "device": "Device",
+      "trackingMode": "Tracking mode",
+      "doIK": "Inverse Kinematics",
+      "filterType": "Filter type",
+      "cutoffFreq": "Cut-off frequency (Hz)",
+      "jointAngles": "Joint angles",
+      "segmentAngles": "Segment angles",
+      "tooltip": {
+        "personHeight": "Height of the reference person for pixel-to-meter conversion.",
+        "detFrequency": "Run person detection only every N frames. Higher = faster, less accurate.",
+        "doIK": "Perform OpenSim inverse kinematics (research-grade, slower).",
+        "filterType": "Filtering method for smoothing trajectories.",
+        "cutoffFreq": "Low-pass filter cut-off frequency in Hertz."
+      }
+    },
+    "actions": {
+      "startAnalysis": "Start Analysis",
+      "processing": "Processing...",
+      "queued": "Queued"
+    }
+  },
+  "job": {
+    "title": "Job Status",
+    "status": "Status",
+    "progress": "Progress",
+    "yourLink": "Your unique result link",
+    "copyLink": "Copy link",
+    "copied": "Copied!",
+    "waitMessage": "Please keep this page open. You can also bookmark the link above and come back later.",
+    "download": "Download Results (ZIP)",
+    "downloadHint": "Your files will be deleted immediately after download for privacy.",
+    "states": {
+      "pending": "Pending",
+      "preprocessing": "Pre-processing",
+      "queued": "Queued",
+      "processing": "Processing",
+      "completed": "Completed",
+      "failed": "Failed"
+    }
+  },
+  "credits": {
+    "title": "Credits",
+    "text": "Sports2D-Web is built on top of the amazing open-source work by David Pagnon and the Pose2Sim project.",
+    "originalProject": "Original Sports2D Project",
+    "pose2sim": "Pose2Sim Project",
+    "license": "Licensed under BSD-3-Clause."
+  },
+  "errors": {
+    "uploadFailed": "Upload failed. Please try again.",
+    "processFailed": "Failed to start processing.",
+    "generic": "Something went wrong."
+  }
+}
