@@ -5,7 +5,7 @@
       <div class="status-row">
         <div>
           <strong>{{ $t('job.status') }}:</strong>
-          <span class="badge" :class="statusClass">{{ statusLabel }}</span>
+          <span class="badge" :class="statusClass">{{ $t(statusLabel) }}</span>
         </div>
         <div class="progress-wrap">
           <div class="progress-bar"><div class="fill" :style="{ width: progress + '%' }"></div></div>
@@ -24,7 +24,7 @@
       </div>
 
       <div v-if="jobStore.status === 'completed' && jobStore.downloadUrl" class="download-box">
-        <a :href="jobStore.downloadUrl" class="btn-primary" download>{{ $t('job.download') }}</a>
+        <a :href="jobStore.downloadUrl" class="btn-primary" download @click="onDownload">{{ $t('job.download') }}</a>
         <p class="hint">{{ $t('job.downloadHint') }}</p>
         <p v-if="jobStore.resultSizeMb" class="hint">Size: {{ jobStore.resultSizeMb.toFixed(1) }} MB</p>
       </div>
@@ -94,6 +94,12 @@ function copyLink() {
   navigator.clipboard.writeText(currentUrl)
   copied.value = true
   setTimeout(() => copied.value = false, 2000)
+}
+
+function onDownload() {
+  setTimeout(() => {
+    router.push({ name: 'home' })
+  }, 500)
 }
 
 onMounted(() => {

@@ -167,6 +167,7 @@ function onDownload(jobId) {
     const history = loadJobHistory().filter(j => j.job_id !== jobId)
     saveJobHistory(history)
     jobStore.jobHistory = history
+    router.push({ name: 'home' })
   }, 500)
 }
 
