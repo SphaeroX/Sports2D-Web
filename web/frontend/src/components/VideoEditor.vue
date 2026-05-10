@@ -1,7 +1,7 @@
 <template>
   <div class="video-editor">
     <div class="video-wrap">
-      <video ref="video" :src="previewUrl" controls crossorigin="anonymous" @loadedmetadata="onLoaded" @timeupdate="onTimeUpdate"></video>
+      <video ref="video" :src="previewUrl" controls @loadedmetadata="onLoaded" @timeupdate="onTimeUpdate"></video>
     </div>
 
     <p class="hint">{{ $t('home.editor.hint') }}</p>
