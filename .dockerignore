@@ -1,0 +1,26 @@
+# Git
+.git/
+.gitignore
+
+# Web frontend (built separately)
+web/frontend/node_modules/
+web/frontend/dist/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+web/docker-compose.yml
+web/**/Dockerfile
