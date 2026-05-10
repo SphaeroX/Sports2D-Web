@@ -85,7 +85,6 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/davidpagnon/Sports2D.git
-cd Sports2D/web
 ```
 
 ---
@@ -99,7 +98,6 @@ This is the fastest and most reliable way to run the full stack locally.
 Make sure you are in the `web` directory before running the commands:
 
 ```bash
-cd web
 docker-compose up --build
 ```
 
