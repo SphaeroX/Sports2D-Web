@@ -96,7 +96,10 @@ This is the fastest and most reliable way to run the full stack locally.
 
 #### 1. Build and start all services
 
+Make sure you are in the `web` directory before running the commands:
+
 ```bash
+cd web
 docker-compose up --build
 ```
 
