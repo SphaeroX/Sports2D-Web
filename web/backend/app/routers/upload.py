@@ -17,6 +17,7 @@ logger = logging.getLogger(__name__)
 @router.post("/", response_model=VideoUploadResponse)
 async def upload_video(
     file: UploadFile = File(...),
+    user_id: str = Form(default=None),
     db: Session = Depends(get_db)
 ):
     # Validate file type
@@ -65,6 +66,7 @@ async def upload_video(
     # Record in DB
     job = JobRecord(
         job_id=job_id,
+        user_id=user_id,
         status=JobStatus.PENDING.value,
         original_filename=filename,
         upload_path=str(video_path),

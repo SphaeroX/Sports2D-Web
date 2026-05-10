@@ -55,6 +55,10 @@
       "startAnalysis": "Start Analysis",
       "processing": "Processing...",
       "queued": "Queued"
+    },
+    "queue": {
+      "title": "Your Analysis Queue",
+      "viewDetails": "View Details"
     }
   },
   "job": {

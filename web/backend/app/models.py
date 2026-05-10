@@ -98,6 +98,21 @@ class VideoUploadResponse(BaseModel):
     original_duration: float
     message: str
 
+class JobListItem(BaseModel):
+    job_id: str
+    status: JobStatus
+    created_at: datetime
+    updated_at: Optional[datetime] = None
+    completed_at: Optional[datetime] = None
+    progress_percent: int = 0
+    message: Optional[str] = None
+    download_url: Optional[str] = None
+    result_size_mb: Optional[float] = None
+    original_filename: Optional[str] = None
+
+class JobListResponse(BaseModel):
+    jobs: List[JobListItem]
+
 class JobStatusResponse(BaseModel):
     job_id: str
     status: JobStatus
@@ -111,6 +126,7 @@ class JobStatusResponse(BaseModel):
 
 class ProcessRequest(BaseModel):
     job_id: str
+    user_id: Optional[str] = None
     segments: List[Segment] = []
     params: Sports2DParams = Field(default_factory=Sports2DParams)
     expert_mode: bool = False

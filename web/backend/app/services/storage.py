@@ -16,6 +16,7 @@ class JobRecord(Base):
     __tablename__ = "jobs"
     
     job_id = Column(String, primary_key=True, index=True)
+    user_id = Column(String, index=True, nullable=True)
     status = Column(String, default=JobStatus.PENDING.value)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

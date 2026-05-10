@@ -55,6 +55,10 @@
       "startAnalysis": "Analyse starten",
       "processing": "Verarbeitung...",
       "queued": "In Warteschlange"
+    },
+    "queue": {
+      "title": "Ihre Analyse-Warteschlange",
+      "viewDetails": "Details anzeigen"
     }
   },
   "job": {
